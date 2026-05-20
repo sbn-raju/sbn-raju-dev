@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { Magnetic } from "../ui/Magnetic";
 
 const roles = [
   "Full Stack Developer",
@@ -12,6 +13,34 @@ export const Hero = () => {
   const [text, setText] = useState("");
   const [roleIdx, setRoleIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({
+    transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+    transition: "transform 0.5s ease",
+  });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    
+    // Rotate scaling (up to max 7 degrees for subtle effect)
+    const rotateX = -(y / (box.height / 2)) * 7; 
+    const rotateY = (x / (box.width / 2)) * 7;
+    
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+      transition: "transform 0.1s ease",
+      willChange: "transform",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+      transition: "transform 0.5s ease",
+    });
+  };
 
   useEffect(() => {
     const current = roles[roleIdx];
@@ -66,7 +95,8 @@ export const Hero = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-sm font-semibold rounded-md hover:shadow-glow transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-sm font-semibold rounded-md hover:shadow-glow transition-all duration-300 animate-pulse-glow"
+              data-cursor-text="scroll"
             >
               view_projects()
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
@@ -74,26 +104,38 @@ export const Hero = () => {
             <a
               href="#contact"
               className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground font-mono text-sm rounded-md hover:border-primary hover:text-primary transition-all"
+              data-cursor-text="chat"
             >
               get_in_touch()
             </a>
           </div>
 
           <div className="flex items-center gap-5 pt-4">
-            <a href="https://github.com/sbn-raju" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="https://www.linkedin.com/in/sbnraju/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="mailto:simhardgaraju@gmail.com" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all">
-              <Mail className="w-5 h-5" />
-            </a>
+            <Magnetic>
+              <a href="https://github.com/sbn-raju" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all" data-cursor-text="github">
+                <Github className="w-5 h-5" />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href="https://www.linkedin.com/in/sbnraju/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all" data-cursor-text="linkedin">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href="mailto:simhardgaraju@gmail.com" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all" data-cursor-text="email">
+                <Mail className="w-5 h-5" />
+              </a>
+            </Magnetic>
           </div>
         </div>
 
-        {/* Terminal */}
-        <div className="terminal-border rounded-lg overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: "200ms" }}>
+        {/* Terminal with 3D Mouse Tilt */}
+        <div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={tiltStyle}
+          className="terminal-border rounded-lg overflow-hidden shadow-card animate-fade-in"
+        >
           <div className="flex items-center gap-2 px-4 py-3 bg-secondary/50 border-b border-border">
             <span className="w-3 h-3 rounded-full bg-destructive/70" />
             <span className="w-3 h-3 rounded-full bg-yellow-500/70" />

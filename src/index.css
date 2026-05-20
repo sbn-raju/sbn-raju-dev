@@ -93,6 +93,12 @@
   ::-webkit-scrollbar-track { background: hsl(0 0% 6%); }
   ::-webkit-scrollbar-thumb { background: hsl(0 0% 18%); border-radius: 5px; }
   ::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
+
+  @media (pointer: fine) {
+    body, a, button, input, select, textarea, [role="button"], [data-cursor] {
+      cursor: none !important;
+    }
+  }
 }
 
 @layer utilities {

@@ -1,4 +1,5 @@
 import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "../ui/SpotlightCard";
 
 const experiences = [
   {
@@ -44,33 +45,35 @@ export const Experience = () => (
           {experiences.map((exp, i) => (
             <div key={i} className="reveal relative pl-8 md:pl-12">
               <div className="absolute -left-[7px] top-2 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-background animate-pulse-glow" />
-              <div className="terminal-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 group">
-                <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                  <h3 className="font-mono text-lg md:text-xl font-bold text-foreground">
-                    {exp.role}{" "}
-                    <span className="text-primary">@ {exp.company}</span>
-                  </h3>
-                  <span className="font-mono text-xs text-muted-foreground">{exp.duration}</span>
+              <SpotlightCard className="rounded-lg transition-all duration-300 hover:-translate-y-0.5">
+                <div className="terminal-border rounded-lg p-6 group">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                    <h3 className="font-mono text-lg md:text-xl font-bold text-foreground">
+                      {exp.role}{" "}
+                      <span className="text-primary">@ {exp.company}</span>
+                    </h3>
+                    <span className="font-mono text-xs text-muted-foreground">{exp.duration}</span>
+                  </div>
+                  <ul className="text-muted-foreground space-y-2 mb-4 list-none">
+                    {exp.points.map((p, j) => (
+                      <li key={j} className="flex gap-2">
+                        <span className="text-primary mt-1">▸</span>
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="font-mono text-xs px-2.5 py-1 rounded bg-primary/10 text-primary border border-primary/20"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <ul className="text-muted-foreground space-y-2 mb-4 list-none">
-                  {exp.points.map((p, j) => (
-                    <li key={j} className="flex gap-2">
-                      <span className="text-primary mt-1">▸</span>
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  {exp.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="font-mono text-xs px-2.5 py-1 rounded bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </SpotlightCard>
             </div>
           ))}
         </div>

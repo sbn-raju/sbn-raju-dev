@@ -1,4 +1,5 @@
 import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "../ui/SpotlightCard";
 
 export const About = () => (
   <section id="about" className="relative px-6 py-24">
@@ -25,21 +26,23 @@ export const About = () => (
           </p>
         </div>
 
-        <div className="reveal terminal-border rounded-lg p-6 font-mono text-sm space-y-3">
-          <p className="text-primary mb-2">// quick_stats.ts</p>
-          {[
-            ["years_coding", "4+"],
-            ["projects_shipped", "10+"],
-            ["coffee_per_day", "∞"],
-            ["cgpa", "9.35"],
-            ["location", "'Hyderabad'"],
-          ].map(([k, v]) => (
-            <div key={k} className="flex justify-between border-b border-border/50 pb-2">
-              <span className="text-muted-foreground">{k}:</span>
-              <span className="text-accent">{v}</span>
-            </div>
-          ))}
-        </div>
+        <SpotlightCard className="reveal rounded-lg">
+          <div className="terminal-border rounded-lg p-6 font-mono text-sm space-y-3">
+            <p className="text-primary mb-2">// quick_stats.ts</p>
+            {[
+              ["years_coding", "4+"],
+              ["projects_shipped", "10+"],
+              ["coffee_per_day", "∞"],
+              ["cgpa", "9.35"],
+              ["location", "'Hyderabad'"],
+            ].map(([k, v]) => (
+              <div key={k} className="flex justify-between border-b border-border/50 pb-2">
+                <span className="text-muted-foreground">{k}:</span>
+                <span className="text-accent">{v}</span>
+              </div>
+            ))}
+          </div>
+        </SpotlightCard>
       </div>
     </div>
   </section>

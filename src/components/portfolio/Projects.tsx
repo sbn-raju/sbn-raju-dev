@@ -1,5 +1,6 @@
 import { Github, ExternalLink } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "../ui/SpotlightCard";
 
 const projects = [
   {
@@ -39,53 +40,58 @@ export const Projects = () => (
 
       <div className="grid md:grid-cols-2 gap-6">
         {projects.map((p, i) => (
-          <article
+          <SpotlightCard
             key={p.name}
-            className="reveal group terminal-border rounded-lg p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            className="reveal group rounded-lg transition-all duration-300 hover:-translate-y-1"
             style={{ transitionDelay: `${i * 60}ms` }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <p className="font-mono text-xs text-primary mb-1">// {p.tag}</p>
-                <h3 className="font-mono text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                  {p.name}
-                </h3>
+            <article
+              className="terminal-border rounded-lg p-6 flex flex-col h-full"
+              data-cursor-text="view"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <p className="font-mono text-xs text-primary mb-1">// {p.tag}</p>
+                  <h3 className="font-mono text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {p.name}
+                  </h3>
+                </div>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={`${p.name} on GitHub`}
+                >
+                  <Github className="w-5 h-5" />
+                </a>
               </div>
+
+              <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">
+                {p.desc}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4">
+                {p.stack.map((s) => (
+                  <span
+                    key={s}
+                    className="font-mono text-[11px] px-2 py-1 rounded bg-accent/10 text-accent border border-accent/20"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+
               <a
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label={`${p.name} on GitHub`}
+                className="font-mono text-xs text-primary inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
               >
-                <Github className="w-5 h-5" />
+                view source <ExternalLink className="w-3.5 h-3.5" />
               </a>
-            </div>
-
-            <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">
-              {p.desc}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {p.stack.map((s) => (
-                <span
-                  key={s}
-                  className="font-mono text-[11px] px-2 py-1 rounded bg-accent/10 text-accent border border-accent/20"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              className="font-mono text-xs text-primary inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
-            >
-              view source <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </article>
+            </article>
+          </SpotlightCard>
         ))}
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "../ui/SpotlightCard";
+import { Magnetic } from "../ui/Magnetic";
 
 const channels = [
   { icon: Mail, label: "simhardgaraju@gmail.com", href: "mailto:simhardgaraju@gmail.com" },
@@ -22,28 +24,32 @@ export const Contact = () => (
           If you've got an interesting problem — let's talk.
         </p>
 
-        <a
-          href="mailto:simhardgaraju@gmail.com"
-          className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-primary text-primary-foreground font-mono text-sm font-semibold rounded-md hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300"
-        >
-          <Mail className="w-4 h-4" />
-          say_hello()
-        </a>
+        <Magnetic>
+          <a
+            href="mailto:simhardgaraju@gmail.com"
+            className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-primary text-primary-foreground font-mono text-sm font-semibold rounded-md hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300"
+            data-cursor-text="send"
+          >
+            <Mail className="w-4 h-4" />
+            say_hello()
+          </a>
+        </Magnetic>
 
         <div className="grid sm:grid-cols-2 gap-3 mt-12 text-left">
           {channels.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="terminal-border rounded-lg p-4 flex items-center gap-3 hover:border-primary hover:-translate-y-0.5 transition-all group"
-            >
-              <c.icon className="w-5 h-5 text-primary" />
-              <span className="font-mono text-sm text-muted-foreground group-hover:text-foreground transition-colors truncate">
-                {c.label}
-              </span>
-            </a>
+            <SpotlightCard key={c.label} className="rounded-lg">
+              <a
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                className="terminal-border rounded-lg p-4 flex items-center gap-3 hover:-translate-y-0.5 transition-all group h-full"
+              >
+                <c.icon className="w-5 h-5 text-primary" />
+                <span className="font-mono text-sm text-muted-foreground group-hover:text-foreground transition-colors truncate">
+                  {c.label}
+                </span>
+              </a>
+            </SpotlightCard>
           ))}
         </div>
       </div>

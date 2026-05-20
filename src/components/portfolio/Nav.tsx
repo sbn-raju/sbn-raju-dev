@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Magnetic } from "../ui/Magnetic";
 
 const links = [
   { id: "about", label: "about" },
@@ -32,22 +33,26 @@ export const Nav = () => {
         <ul className="hidden md:flex items-center gap-8 font-mono text-sm">
           {links.map((l, i) => (
             <li key={l.id}>
-              <a
-                href={`#${l.id}`}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                <span className="text-primary/60 mr-1">0{i + 1}.</span>
-                {l.label}
-              </a>
+              <Magnetic range={35} strength={0.25}>
+                <a
+                  href={`#${l.id}`}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
+                >
+                  <span className="text-primary/60 mr-1">0{i + 1}.</span>
+                  {l.label}
+                </a>
+              </Magnetic>
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
-          className="hidden md:inline-flex font-mono text-sm px-4 py-2 border border-primary/40 text-primary rounded-md hover:bg-primary/10 hover:border-primary transition-all"
-        >
-          let's talk →
-        </a>
+        <Magnetic range={40} strength={0.3}>
+          <a
+            href="#contact"
+            className="hidden md:inline-flex font-mono text-sm px-4 py-2 border border-primary/40 text-primary rounded-md hover:bg-primary/10 hover:border-primary transition-all"
+          >
+            let's talk →
+          </a>
+        </Magnetic>
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-foreground"
