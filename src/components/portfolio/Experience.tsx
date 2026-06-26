@@ -2,6 +2,16 @@ import { SectionHeading } from "./SectionHeading";
 import { SpotlightCard } from "../ui/SpotlightCard";
 
 const experiences = [
+   {
+    role: "AI Engineer Intern",
+    company: "Techsophy",
+    duration: "Sep 2025 —  Present",
+    points: [
+      "Developed frontend dashboard using react.js for hospital.",
+      "Developed AI Application for generating the Standard Operating Procedures (SOPs).",
+    ],
+    stack: ["React.js", "TypeScript", "PostgreSQL", "Python", "FastAPI", "GPT", "Langchain"],
+  },
   {
     role: "Full Stack Developer Intern",
     company: "Sevak Digital Technologies",
