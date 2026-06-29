@@ -8,6 +8,7 @@ const groups = [
   { title: "databases", items: ["PostgreSQL", "MongoDB", "MySQL"] },
   { title: "devops & tools", items: ["Git", "GitHub", "Jenkins", "RabbitMQ", "SonarQube"] },
   { title: "ml & data", items: ["NumPy", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn"] },
+  { title: "frameworks", items: ["Spring Boot", "Next.js", "FastAPI"] },
 ];
 
 export const Skills = () => (

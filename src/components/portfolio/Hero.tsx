@@ -62,6 +62,14 @@ export const Hero = () => {
     return () => clearTimeout(t);
   }, [text, deleting, roleIdx]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -95,6 +103,7 @@ export const Hero = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
+              onClick={(e) => handleScroll(e, "projects")}
               className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-sm font-semibold rounded-md hover:shadow-glow transition-all duration-300 animate-pulse-glow"
               data-cursor-text="scroll"
             >
@@ -103,6 +112,7 @@ export const Hero = () => {
             </a>
             <a
               href="#contact"
+              onClick={(e) => handleScroll(e, "contact")}
               className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground font-mono text-sm rounded-md hover:border-primary hover:text-primary transition-all"
               data-cursor-text="chat"
             >

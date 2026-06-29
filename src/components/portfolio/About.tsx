@@ -30,7 +30,7 @@ export const About = () => (
           <div className="terminal-border rounded-lg p-6 font-mono text-sm space-y-3">
             <p className="text-primary mb-2">// quick_stats.ts</p>
             {[
-              ["years_coding", "4+"],
+              ["years_coding", "< 1 year "],
               ["projects_shipped", "10+"],
               ["coffee_per_day", "∞"],
               ["cgpa", "9.35"],

@@ -20,6 +20,14 @@ export const Nav = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -27,7 +35,7 @@ export const Nav = () => {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#hero" className="font-mono text-sm font-bold tracking-tight">
+        <a href="#hero" onClick={(e) => handleScroll(e, "hero")} className="font-mono text-sm font-bold tracking-tight">
           <span className="text-primary">$</span> sbn<span className="text-primary">.</span>raju
         </a>
         <ul className="hidden md:flex items-center gap-8 font-mono text-sm">
@@ -36,6 +44,7 @@ export const Nav = () => {
               <Magnetic range={35} strength={0.25}>
                 <a
                   href={`#${l.id}`}
+                  onClick={(e) => handleScroll(e, l.id)}
                   className="text-muted-foreground hover:text-primary transition-colors duration-200 block py-1"
                 >
                   <span className="text-primary/60 mr-1">0{i + 1}.</span>
@@ -48,6 +57,7 @@ export const Nav = () => {
         <Magnetic range={40} strength={0.3}>
           <a
             href="#contact"
+            onClick={(e) => handleScroll(e, "contact")}
             className="hidden md:inline-flex font-mono text-sm px-4 py-2 border border-primary/40 text-primary rounded-md hover:bg-primary/10 hover:border-primary transition-all"
           >
             let's talk →
@@ -72,7 +82,10 @@ export const Nav = () => {
               <li key={l.id}>
                 <a
                   href={`#${l.id}`}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    setOpen(false);
+                    handleScroll(e, l.id);
+                  }}
                   className="text-muted-foreground hover:text-primary"
                 >
                   <span className="text-primary/60 mr-2">0{i + 1}.</span>

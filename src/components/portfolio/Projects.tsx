@@ -4,11 +4,19 @@ import { SpotlightCard } from "../ui/SpotlightCard";
 
 const projects = [
   {
+    name: "Snap Bucket SDK",
+    tag: "SDK",
+    desc: "Snap Bucket is a lightweight npm ecosystem that simplifies secure S3 uploads by abstracting AWS complexity. It provides a minimal backend router and a progress-aware frontend client, eliminating boilerplate for pre-signed URLs, credentials, AWS SDK setup, and upload orchestration.",
+    stack: ["TypeScript", "AWS SDK", "React", "Node.js"],
+    link: "https://github.com/sbn-raju/snap-bucket",
+    live: "https://sbn-raju.github.io/snap-bucket/",
+  },
+  {
     name: "Customer Churn Prediction",
     tag: "machine_learning",
     desc: "Classification model predicting customer churn using Logistic Regression and Random Forest. Achieved ~85% accuracy, evaluated with Precision, Recall and F1-score.",
     stack: ["Python", "Pandas", "Scikit-learn"],
-    link: "https://github.com/sbn-raju",
+    link: "https://github.com/sbn-raju/snap-bucket",
   },
   {
     name: "Hotel Price Prediction",
@@ -22,13 +30,6 @@ const projects = [
     tag: "full_stack",
     desc: "End-to-end appointment booking system for clinics — scheduling, profiles, Razorpay payments and Twilio-powered SMS reminders.",
     stack: ["Node.js", "PostgreSQL", "Razorpay", "Twilio"],
-    link: "https://github.com/sbn-raju",
-  },
-  {
-    name: "Custom ERP System",
-    tag: "enterprise",
-    desc: "Modular ERP for student & staff management built during internship. Designed event-driven workflows and a clean React admin layer.",
-    stack: ["Node.js", "React", "PostgreSQL", "RabbitMQ"],
     link: "https://github.com/sbn-raju",
   },
 ];
@@ -81,15 +82,26 @@ export const Projects = () => (
                   </span>
                 ))}
               </div>
+              <div className="flex gap-3">
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-mono text-xs text-primary inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
+                >
+                  view_source <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                |
+                <a
+                  href={p.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-mono text-xs text-primary inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
+                >
+                  _view_live <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
 
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noreferrer"
-                className="font-mono text-xs text-primary inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
-              >
-                view source <ExternalLink className="w-3.5 h-3.5" />
-              </a>
             </article>
           </SpotlightCard>
         ))}
